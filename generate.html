@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<title>secret-santa</title>
+		<script language="javascript" src="js/lz-string.min.js"></script>
+		<link href="https://fonts.googleapis.com/css?family=Girassol|Nunito&display=swap" rel="stylesheet"> 
+		<link rel="stylesheet" href="assets/styles.css">
+	</head>
+	<body>
+		<main>
+				<h3 class="emoji">🎅</h3>
+				<h1>Secret<span class="star">*</span> Secret Santa</h1>
+				<p>Enter some names:</p>
+				<form name="names_form" id="names_form">
+					<textarea id="names" placeholder="George&#10;Erinna&#10;Another example name"></textarea>	
+					<div id="error_panel" class="error_panel">
+						<h3>Enter some names!</h3>
+					</div>
+					<div class="buttons">
+							<input class="submit" type="submit" value="Generate link!">
+							<input class="help" type="button" value="Help?" id="help_button">
+					</div>
+				</form>
+				<section id="link_panel" class="link_panel">
+					<h3>Give this link to your friends:</h3>
+					<input type="text" id="link" value="link">	
+				</section>
+				<section id="how_panel" class="how_panel">
+					<h2>How does this work?</h2>
+					<ol>
+						<li>This website generates you a unique link that contains all your names and their Secret santa pairings</li>
+						<li>When your friends click on the link, they can enter their name to see who they have to buy for</li>
+						<li>Because all the data is contained in the link, it is private and is not logged by this website or in any database</li>
+						<li>See the github page for more info: <a href="https://github.com/gcsalzburg/secret-santa">https://github.com/gcsalzburg/secret-santa</a></li>
+					</ol>
+				</section>
+				<section class="credits_panel">
+					<p>Made by <a href="https://www.designedbycave.co.uk/">George Cave</a>, on behalf of Santa.</p>
+				</section>
+		</main>
+		
+
+		<p>Url: <span id="compressed"></span></p>
+		<p>Raw: <span id="uncompressed"></span></p>
+		
+		<script>
+				document.getElementById("link").addEventListener("focus",function(e){
+					document.getElementById("link").select();
+				});
+				document.getElementById("help_button").addEventListener("click", function(e){
+					e.preventDefault();
+					document.getElementById("how_panel").style.display = 'block';
+				});
+				
+				document.getElementById("names_form").addEventListener("submit",function(e){
+					e.preventDefault();
+					var raw_names = document.getElementById("names").value.split(/\r?\n/);
+
+					// Remove blank names and strange characters
+					for(i=0; i<raw_names.length; i++){
+						raw_names[i] = raw_names[i].replace(/[^a-zÀ-ÿ]+/,''); // Trim anything we don't want
+						if(/^\s*$/.test(raw_names[i])){
+							raw_names.splice(i,1);
+							i--;
+						}
+					}
+
+					// Set textarea to our processing output
+					document.getElementById("names").value = raw_names.join("\r\n"); 
+
+					// Generate the link
+					generate_link(raw_names);
+				});
+
+				// Assumes that data is clean
+				function generate_link(names_array){
+					// Check for duplicates
+					if(names_array.length < 2){
+						return;
+					}
+					if(!is_array_unique(names_array)){
+						alert("Duplicate names in list - please fix!");
+						return;
+					}
+					
+					var names = names_array.join("/");
+
+					var num_names = names_array.length;
+					var mapping = Array.from(Array(num_names),(e,i)=>i+1);
+					var shuffled = shuffle_no_repeat(mapping);
+
+					var compressed_string = "v1." + btoa(names + "|" + shuffled.join("/"));
+					var link = "https://www.designedbycave.co.uk/secret-santa?s="+compressed_string;
+					document.getElementById("link").value = link;
+					document.getElementById("link_panel").style.display = 'block';
+				}
+	
+				function shuffle_no_repeat(a){
+					var loops=0;
+					do {
+						console.log(shuffle(a));
+						loops++;
+					} while (check(a));
+
+					console.log(loops);
+					return a;
+				}
+
+				function shuffle(a) {
+					var j, x, i;
+					for (i = a.length - 1; i > 0; i--) {
+						j = Math.floor(Math.random() * (i + 1));
+						x = a[i];
+						a[i] = a[j];
+						a[j] = x;
+					}
+					return a;
+				}
+				function check(a){
+					for(i = 0; i<a.length; i++){
+						if(a[i] == i){
+							return false;
+						}
+					}
+					return true;
+				}	
+
+				function is_array_unique(myArray){
+					for (var i = 0; i < myArray.length; i++){
+						if (myArray.indexOf(myArray[i]) !== myArray.lastIndexOf(myArray[i])){ 
+								return false; 
+						} 
+					} 
+					return true;
+				}			
+	
+			</script>
+	</body>
+</html>

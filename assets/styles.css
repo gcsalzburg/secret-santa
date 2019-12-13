@@ -1,0 +1,114 @@
+
+html, body{
+	font-family: 'Nunito', sans-serif;
+	margin:0;
+	background:url(christmas-dark.png);
+}
+
+a{
+	color: #278eef;
+}
+
+h3.emoji{
+	margin: 0.3em 0 0 0;
+	font-size:5em;
+	text-align:center;
+}
+h1{
+	font-family: 'Girassol', cursive;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 3em;
+	margin: 0.2em 0;
+}
+h1 .star{
+	color: red;
+}
+p{
+	font-size: 1.2em;
+	text-align: center;
+}
+textarea{
+	width: 50%;
+	max-width: 50%;
+	height: 10em;
+	font-family: 'Nunito', sans-serif;
+	padding: 0.5em;
+	margin: 0 auto;
+	display: block;
+	font-size: 1.1em;
+	border: 5px solid rgba(0,0,0,0.15);
+	border-radius:15px;
+}
+.buttons{
+	display:flex;
+	justify-content: center;
+}
+input.submit, input.help{
+	font-family: 'Nunito', sans-serif;
+	display: block;
+	border: 4px solid rgba(0,0,0,0);
+	font-size: 1em;
+	padding: 0.5em 1em;
+	margin: 1em 0.2em;
+	background-color: #149b0d;
+	color: #fff;
+	font-weight: 800;
+	cursor:pointer;
+}
+input.help{
+	background-color: #c5c5c5;
+}
+input:hover{
+	border-color: rgba(0,0,0,0.25);
+}
+
+main{
+	max-width: 90%;
+	margin: 0 auto;
+	width: 700px;
+	min-height: 100%;
+	background: rgb(255, 255, 255);
+	padding: 10px 25px 25px;
+}
+
+.link_panel{
+	width: 80%;
+	margin: 0 auto;
+	background-color: #fdfbb9;
+	padding: 0.5em 1em;
+	text-align: center;
+	border-radius:15px;
+	display:none;
+}
+.link_panel h3{
+	margin: 0.5em 1em;
+}
+.link_panel input{
+	font-family: 'Nunito', sans-serif;
+	width: 95%;
+	margin: 0.5em 0;
+	box-sizing: border-box;
+	font-size: 1.1em;
+	padding: 0.3em 0.5em;
+	word-wrap: normal;
+	border: 3px solid rgba(0,0,0,0.15);
+	background:#fff;
+	text-align:left;
+}
+
+.how_panel, .credits_panel{
+	color: #666;
+	max-width: 80%;
+	margin: 0 auto;
+}
+.how_panel h2{
+	font-size:1.2em;
+}
+.how_panel ol, .credits_panel p{
+	font-size: 0.85em;
+}
+.how_panel{
+	display:none;
+}
+.credits_panel{text-align:center;}

@@ -28,6 +28,16 @@ p{
 	font-size: 1.2em;
 	text-align: center;
 }
+ol{
+   padding-left: 2em;
+}
+li{
+   margin-bottom: 0.3em;
+}
+.names_form{
+   display: flex;
+   flex-direction: column;
+}
 textarea{
 	width: 50%;
 	max-width: 50%;
@@ -44,9 +54,10 @@ textarea{
 	display:flex;
 	justify-content: center;
 }
-input.submit, input.help{
+input.submit, input.help, .button{
 	font-family: 'Nunito', sans-serif;
-	display: block;
+   display: inline-block;
+   text-decoration:none;
 	border: 4px solid rgba(0,0,0,0);
 	font-size: 1em;
 	padding: 0.5em 1em;
@@ -59,17 +70,92 @@ input.submit, input.help{
 input.help{
 	background-color: #c5c5c5;
 }
-input:hover{
+input:hover, .button:hover{
 	border-color: rgba(0,0,0,0.25);
 }
 
 main{
-	max-width: 90%;
+	max-width: 85%;
 	margin: 0 auto;
 	width: 700px;
 	min-height: 100%;
 	background: rgb(255, 255, 255);
 	padding: 10px 25px 25px;
+}
+
+.error_panel{
+   background-color: rgba(255,200,61,0.4);
+   max-width: 70%;
+   margin: 0.5em auto;
+   padding: 0.5em 1em 0.5em 2.8em;
+   font-size: 1.2em;
+   border-radius: 10px;
+   position: relative;
+   display: none;
+}
+.error_panel:before{
+   content: "⚠️";
+   display: block;
+   position: absolute;
+   left: 10px;
+   top: 50%;
+   line-height: 0px;
+   font-size: 1.2em;
+}
+
+.check_form{
+   display:flex;
+   flex-direction:column;
+}
+
+.check_panel{
+   width: 100%;
+   display:flex;
+   flex-direction: column;
+   margin:0 auto;
+}
+
+.check_name{
+	font-family: 'Nunito', sans-serif;
+	width: 95%;
+	margin: 0.5em auto;
+	box-sizing: border-box;
+	font-size: 1.1em;
+	padding: 0.3em 0.5em;
+	word-wrap: normal;
+	border: 3px solid rgba(0,0,0,0.15);
+	background:#fff;
+   text-align:left;
+   max-width: 400px;
+   display:block;
+}
+
+.result_panel{
+   background-color: rgba(138,254,22,0.4);
+   max-width: 80%;
+   margin: 0.5em auto;
+   padding: 2em 1em 0em 1em;
+   font-size: 1.2em;
+   border-radius: 10px;
+   position: relative;
+   display: none;
+   text-align: center;
+}
+.result_panel:before{
+   content: "🎁";
+   display: block;
+   position: relative;
+   line-height: 0px;
+   font-size: 1.5em;
+   text-align: center;
+   width: 100%;
+}
+.result_panel h2{
+   font-size:1.4em;
+   margin: 1em 0 0 0;
+}
+.result_panel .button{
+   margin-top:0em;
 }
 
 .link_panel{
@@ -83,6 +169,11 @@ main{
 }
 .link_panel h3{
 	margin: 0.5em 1em;
+}
+.link_panel p{
+   margin: 0 auto;   
+   font-size: 1em;
+   max-width: 70%;
 }
 .link_panel input{
 	font-family: 'Nunito', sans-serif;

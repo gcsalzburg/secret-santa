@@ -130,6 +130,17 @@ main{
    display:block;
 }
 
+.default_panel{
+   max-width: 80%;
+   margin: 0.5em auto;
+   padding: 2em 1em 0em 1em;
+   font-size: 1.2em;
+   border-radius: 10px;
+   position: relative;
+   display: none;
+   text-align: center;
+}
+
 .result_panel{
    background-color: rgba(138,254,22,0.4);
    max-width: 80%;

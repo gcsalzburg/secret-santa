@@ -7,6 +7,15 @@ var link_random_data = Math.random().toString(36).substr(2, 12);
 function process_url_data(){
    var url_params = new URLSearchParams(window.location.search);
    var data_string = url_params.get('s');
+
+   if(!data_string || data_string == ""){
+      // error -> no data string at all
+      return {
+         error: true,
+         no_string: true
+      };
+   }
+
    var data_parts = data_string.split('.');
    if(data_parts.length != 3){
       // error -> string not valid

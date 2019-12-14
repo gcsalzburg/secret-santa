@@ -29,6 +29,9 @@
                   <a href="generate.html" class="button">🎄 Create your own list</a>
                </section>
             </section>
+            <section id="default_panel" class="default_panel">
+               <a href="generate.html" class="button">🎄 Create your own list</a>
+            </section> 
 
 				<section id="how_panel" class="how_panel">
 					<h2>How does this work?</h2>
@@ -54,8 +57,13 @@
              // Check inbound link
             link_data = process_url_data();
             if(link_data.error){
-               // handle error
-               show_error(link_data.msg);
+               if(link_data.no_string){
+                  show_default();
+                  console.log("No link found");
+               }else{
+                  // handle error
+                  show_error(link_data.msg);
+               }
             }else{
                var check_storage = check_for_stored(link_data.data_string);
                console.log(check_storage);
@@ -68,14 +76,16 @@
 
          // UI handling for this page below
 
-         var _check_form   = document.getElementById("check_form");
-         var _check_name   = document.getElementById("check_name");
-         var _for_name     = document.getElementById("for_name");
-         var _your_name    = document.getElementById("your_name");
-         var _error_panel  = document.getElementById("error_panel");
-         var _result_panel = document.getElementById("result_panel");
-         var _help_button  = document.getElementById("help_button");
-         var _how_panel    = document.getElementById("how_panel");
+         var _check_form    = document.getElementById("check_form");
+         var _check_name    = document.getElementById("check_name");
+         var _for_name      = document.getElementById("for_name");
+         var _your_name     = document.getElementById("your_name");
+         var _check_panel   = document.getElementById("check_panel");
+         var _default_panel = document.getElementById("default_panel");
+         var _error_panel   = document.getElementById("error_panel");
+         var _result_panel  = document.getElementById("result_panel");
+         var _help_button   = document.getElementById("help_button");
+         var _how_panel     = document.getElementById("how_panel");
 
          _check_name.addEventListener("focus",function(e){
             hide_error();
@@ -111,6 +121,11 @@
             e.preventDefault();
             _how_panel.style.display = 'block';
          });
+
+         function show_default(){
+            _default_panel.style.display = 'block';
+            _check_panel.style.display = 'none';
+         }
 
          function show_result(your_name, for_name){
             _for_name.textContent = for_name;

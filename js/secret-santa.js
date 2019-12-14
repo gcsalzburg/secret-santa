@@ -57,19 +57,20 @@ function process_url_data(){
    }
 }
 
-function save_pairing(data_string, your_name, for_name){
-   localStorage.setItem(data_string, your_name + "|" + for_name);
+function save_pairing(data_string, your_name, for_name, number_names){
+   localStorage.setItem(data_string, your_name + "|" + for_name + "|" + number_names);
 }
 
 function check_for_stored(data_string){
    var found = localStorage.getItem(data_string);
    if(found && found != ""){
       var found_parts = found.split("|");
-      if(found_parts.length == 2){
+      if(found_parts.length == 3){
          return {
             error: false,
             your_name: found_parts[0],
-            for_name: found_parts[1]
+            for_name: found_parts[1],
+            number_names: found_parts[2]
          };
       }
    }

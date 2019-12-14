@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1">
-		<title>secret-santa</title>
+		<title>🎅 Secret Secrect Santa list generator</title>
 		<script src="js/secret-santa.js"></script>
 		<link href="https://fonts.googleapis.com/css?family=Girassol|Nunito&display=swap" rel="stylesheet"> 
 		<link rel="stylesheet" href="assets/styles.css">
@@ -25,7 +25,7 @@
                </form>
                <section id="result_panel" class="result_panel"> 
                   <h2>Congratulations <span id="your_name"></span>!</h2>
-                  <p>You're buying for <strong id="for_name"></strong></p>
+                  <p>This list has <span id="number_names">?</span> names and you're buying for <strong id="for_name"></strong></p>
                   <a href="generate.html" class="button">🎄 Create your own list</a>
                </section>
             </section>
@@ -68,7 +68,7 @@
                var check_storage = check_for_stored(link_data.data_string);
                console.log(check_storage);
                if(!check_storage.error){
-                  show_result(check_storage.your_name, check_storage.for_name);
+                  show_result(check_storage.your_name, check_storage.for_name, check_storage.number_names);
                }
             }
          });
@@ -86,6 +86,7 @@
          var _result_panel  = document.getElementById("result_panel");
          var _help_button   = document.getElementById("help_button");
          var _how_panel     = document.getElementById("how_panel");
+         var _number_names  = document.getElementById("number_names");
 
          _check_name.addEventListener("focus",function(e){
             hide_error();
@@ -112,8 +113,8 @@
                // error name not found
                show_error("Sorry, we can't find that name in this list, try again?");
             }else{
-               save_pairing(link_data.data_string, check_name, for_name);
-               show_result(check_name, for_name);
+               save_pairing(link_data.data_string, check_name, for_name, link_data.names.length);
+               show_result(check_name, for_name, link_data.names.length);
             }
          });
 
@@ -127,9 +128,10 @@
             _check_panel.style.display = 'none';
          }
 
-         function show_result(your_name, for_name){
+         function show_result(your_name, for_name, number_names){
             _for_name.textContent = for_name;
             _your_name.textContent = your_name;
+            _number_names.textContent = number_names;
             _check_form.style.display = 'none';
             _result_panel.style.display = 'inline-block';
          }

@@ -20,7 +20,6 @@ main{
 	background: rgb(255, 255, 255);
    padding: 10px 25px;
    box-sizing: border-box;
-   flex-grow: 1;
 }
 
 h3.emoji{

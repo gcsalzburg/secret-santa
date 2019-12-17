@@ -65,7 +65,10 @@ input.submit, input.help, .button{
 	background-color: #149b0d;
 	color: #fff;
 	font-weight: 800;
-	cursor:pointer;
+   cursor:pointer;
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
 }
 input.help{
 	background-color: #c5c5c5;

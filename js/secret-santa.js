@@ -1,5 +1,5 @@
 
-var link_root = "https://www.designedbycave.co.uk/secret-santa?s=";
+var link_root = "https://play.interactionmagic.com/secret-santa?s=";
 var link_version = "v1";
 var link_random_data = Math.random().toString(36).substr(2, 12);
 

@@ -1,7 +1,7 @@
 # 🎅 Secret Secret Santa Generator
 
 >
-> **Try it here:** https://www.designedbycave.co.uk/secret-santa/
+> **Try it here:** https://play.interactionmagic.com/secret-santa/
 >
 
 What's wrong with most Secret Santa list generators online?

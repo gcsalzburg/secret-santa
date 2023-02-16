@@ -97,7 +97,7 @@ class SecretSanta{
 		for(let i=0; i<this.data.names.length; i++){
 			if(check_name == this.data.names[i]){
 
-				const receiver = this.data.names[this.data.order[i]-1]
+				const receiver = this.data.names[this.data.order[i]]
 
 				// Save this pairing for next time
 				this.save_name(check_name, receiver)

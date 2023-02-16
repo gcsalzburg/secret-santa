@@ -4,7 +4,6 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1">
 		<title>🎅 Secret Secrect Santa list generator</title>
-		<script src="js/secret-santa.js"></script>
 		<link href="https://fonts.googleapis.com/css?family=Girassol|Nunito&display=swap" rel="stylesheet"> 
 		<link rel="stylesheet" href="assets/styles.css">
 	</head>
@@ -13,79 +12,36 @@
 				<h3 class="emoji">🎅</h3>
 				<h1>Secret Secret Santa</h1>
 				<p>Enter some names:</p>
-				<form name="names_form" id="names_form" class="names_form">
-					<textarea id="names" placeholder="You&#10;Your friend&#10;A friend called George&#10;One more..."></textarea>	
-					<div id="error_panel" class="error_panel">Uh oh...</div>
+				<form name="names-form" class="names-form">
+					<textarea id="names" placeholder="You&#10;Your friend&#10;A friend called George&#10;One more..." data-lpignore="true"></textarea>	
+					<div class="error-panel">Uh oh...</div>
 					<div class="buttons">
 							<input class="submit" type="submit" value="🎄 Generate link!">
-							<input class="help" type="button" value="Help?" id="help_button">
+							<input class="help-button" type="button" value="Help?">
 					</div>
 				</form>
-				<section id="link_panel" class="link_panel">
+				<section class="link-panel">
                <h3>Give this link to your friends:</h3>
 					<input type="text" id="link" value="link">	
                <p>When they click it, they can enter their name to find out who they have to buy for.</p>
 				</section>
-				<section id="how_panel" class="how_panel">
+				<section class="how-panel">
 					<h2>How does this work?</h2>
 					<ol>
 						<li>This website generates you a unique link that contains all your names and their Secret santa pairings</li>
 						<li>When your friends click on the link, they can enter their name to see who they have to buy for</li>
 						<li>Because all the data is contained in the link, it is private and is not logged by this website or in any database</li>
+						<li><strong>Pro tip:</strong> Add names on same line separated by a comma to avoid couples buying for each other</li>
 						<li>See this page for more info: <a href="https://github.com/gcsalzburg/secret-santa">https://github.com/gcsalzburg/secret-santa</a></li>
 					</ol>
 				</section>
-				<section class="credits_panel">
+				<section class="credits-panel">
 					<p>Made by <a href="https://interactionmagic.com/">George Cave</a>, on behalf of Santa.</p>
 				</section>
 		</main>
 		
-		<script>
-
-         // UI handling for this page below
-
-         var _link         = document.getElementById("link");
-         var _link_panel   = document.getElementById("link_panel");
-         var _help_button  = document.getElementById("help_button");
-         var _how_panel    = document.getElementById("how_panel");
-         var _names_form   = document.getElementById("names_form");
-         var _names        = document.getElementById("names");
-         var _error_panel  = document.getElementById("error_panel");
-
-         _names.addEventListener("focus",function(e){
-            hide_error();
-         });
-         _link.addEventListener("focus",function(e){
-            _link.select();
-         });
-         _help_button.addEventListener("click", function(e){
-            e.preventDefault();
-            _how_panel.style.display = 'block';
-         });
-
-         _names_form.addEventListener("submit",function(e){
-            e.preventDefault();
-
-            var raw_names = clean_data(_names.value.split(/\r?\n/));
-            _names.value = raw_names.join("\r\n"); // Set textarea to our cleaned output
-
-            // Generate the link
-            var response = generate_link(raw_names);
-            if(response.error){
-               show_error(response.msg);
-            }else{
-               _link.value = response.msg;
-               _link_panel.style.display = 'block';
-            }
-         });
-         
-         function show_error(err_msg){
-            _error_panel.textContent = err_msg;
-            _error_panel.style.display = 'inline-block';
-         }
-         function hide_error(){
-            _error_panel.style.display = 'none';
-         }
-		</script>
+		<script src="js/SecretSanta.js"></script>
+		<script src="js/common.js"></script>
+		<script src="js/generate.js"></script>
 	</body>
 </html>

@@ -20,6 +20,8 @@ main{
 	background: rgb(255, 255, 255);
    padding: 10px 25px;
    box-sizing: border-box;
+	display: flex;
+   flex-direction: column;
 }
 
 h3.emoji{
@@ -51,7 +53,7 @@ ol{
 li{
    margin-bottom: 0.3em;
 }
-.names_form{
+.names-form{
    display: flex;
    flex-direction: column;
 }
@@ -72,7 +74,7 @@ textarea{
 	display:flex;
 	justify-content: center;
 }
-input.submit, input.help, .button{
+input.submit, input.help-button, .button{
 	font-family: 'Nunito', sans-serif;
    display: inline-block;
    text-decoration:none;
@@ -89,14 +91,14 @@ input.submit, input.help, .button{
    appearance: none;
    border-radius: 0px;
 }
-input.help{
+input.help-button{
 	background-color: #c5c5c5;
 }
 input:hover, .button:hover{
 	border-color: rgba(0,0,0,0.25);
 }
 
-.error_panel{
+.error-panel{
    background-color: rgba(255,200,61,0.4);
    max-width: 70%;
    margin: 0.5em auto;
@@ -104,9 +106,9 @@ input:hover, .button:hover{
    font-size: 1.2em;
    border-radius: 10px;
    position: relative;
-   display: none;
+   display: inline-block;
 }
-.error_panel:before{
+.error-panel:before{
    content: "⚠️";
    display: block;
    position: absolute;
@@ -116,19 +118,19 @@ input:hover, .button:hover{
    font-size: 1.2em;
 }
 
-.check_form{
-   display:flex;
-   flex-direction:column;
-}
-
-.check_panel{
+.check-panel{
    width: 100%;
    display:flex;
    flex-direction: column;
    margin:0 auto;
 }
+.check-form{
+   display:flex;
+   flex-direction:column;
+}
 
-.check_name{
+
+.check-name{
 	font-family: 'Nunito', sans-serif;
 	width: 95%;
 	margin: 0.5em auto;
@@ -143,18 +145,17 @@ input:hover, .button:hover{
    display:block;
 }
 
-.default_panel{
+.default-panel{
    max-width: 80%;
    margin: 0.5em auto;
-   padding: 2em 1em;
+   padding: 1em 1em;
    font-size: 1.2em;
    border-radius: 10px;
    position: relative;
-   display: none;
    text-align: center;
 }
 
-.result_panel{
+.result-panel{
    background-color: rgba(138,254,22,0.4);
    max-width: 80%;
    margin: 0.5em auto;
@@ -162,10 +163,9 @@ input:hover, .button:hover{
    font-size: 1.2em;
    border-radius: 10px;
    position: relative;
-   display: none;
    text-align: center;
 }
-.result_panel:before{
+.result-panel:before{
    content: "🎁";
    display: block;
    position: relative;
@@ -174,32 +174,31 @@ input:hover, .button:hover{
    text-align: center;
    width: 100%;
 }
-.result_panel h2{
+.result-panel h2{
    font-size:1.4em;
    margin: 1em 0 0 0;
 }
-.result_panel .button{
+.result-panel .button{
    margin-top:0em;
 }
 
-.link_panel{
+.link-panel{
 	width: 80%;
 	margin: 0 auto;
 	background-color: #fdfbb9;
 	padding: 0.5em 1em;
 	text-align: center;
 	border-radius:15px;
-	display:none;
 }
-.link_panel h3{
+.link-panel h3{
 	margin: 0.5em 1em;
 }
-.link_panel p{
+.link-panel p{
    margin: 0 auto;   
    font-size: 1em;
    max-width: 70%;
 }
-.link_panel input{
+.link-panel input{
 	font-family: 'Nunito', sans-serif;
 	width: 95%;
 	margin: 0.5em 0;
@@ -212,18 +211,26 @@ input:hover, .button:hover{
 	text-align:left;
 }
 
-.how_panel, .credits_panel{
+.how-panel, .credits-panel{
 	color: #666;
 	max-width: 80%;
 	margin: 0 auto;
 }
-.how_panel h2{
+.how-panel h2{
 	font-size:1.2em;
 }
-.how_panel ol, .credits_panel p{
+.how-panel ol, .credits-panel p{
 	font-size: 0.85em;
 }
-.how_panel{
-	display:none;
-}
-.credits_panel{text-align:center;}
+.credits-panel{text-align:center;}
+
+/* Toggles */
+
+body:not(.show-help) .how-panel{display: none;}
+body:not(.show-link) .link-panel{display:none;}
+
+body:not(.show-check) .check-form{display:none;}
+body.show-check .default-panel{display:none;}
+
+body.show-results .check-form{display:none;}
+body:not(.show-results) .result-panel{display:none;}

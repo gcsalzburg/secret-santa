@@ -4,7 +4,6 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1">
 		<title>🎅 Secret Secret Santa</title>
-		<script src="js/secret-santa.js"></script>
 		<link href="https://fonts.googleapis.com/css?family=Girassol|Nunito&display=swap" rel="stylesheet"> 
 		<link rel="stylesheet" href="assets/styles.css">
 	</head>
@@ -12,27 +11,26 @@
 		<main>
 				<h3 class="emoji">🎅</h3>
             <h1>Secret Secret Santa</h1>
-            <section id="check_panel" class="check_panel">
-               <form name="check_form" id="check_form" class="check_form">	
+            <section class="check-panel">
+               <form name="check-form" id="check-form" class="check-form">	
                   <p>Fill in your name:</p>
-                  <input type="text" name="check_name" id="check_name" class="check_name">
-                  <div id="error_panel" class="error_panel">Uh oh...</div>
+                  <input type="text" name="check-name" class="check-name">
                   <div class="buttons">
                      <input class="submit check" type="submit" value="🎁 Find my gift receiver!">
-							<input class="help" type="button" value="Help?" id="help_button">
+							<input class="help-button" type="button" value="Help?">
                   </div>
                </form>
-               <section id="result_panel" class="result_panel"> 
-                  <h2>Congratulations <span id="your_name"></span>!</h2>
-                  <p>This list has <span id="number_names">?</span> names and you're buying for <strong id="for_name"></strong></p>
+               <section class="result-panel"> 
+                  <h2>Congratulations <span class="your-name"></span>!</h2>
+                  <p>This list has <span class="number-names">?</span> names and you're buying for <strong class="for-name"></strong></p>
                   <a href="generate.html" class="button">🎄 Create your own list</a>
                </section>
             </section>
-            <section id="default_panel" class="default_panel">
+            <section class="default-panel">
                <a href="generate.html" class="button">🎄 Create your own list</a>
             </section> 
 
-				<section id="how_panel" class="how_panel">
+				<section class="how-panel">
 					<h2>How does this work?</h2>
 					<ol>
 						<li>Your friend created a unique link that contains all the names and Secret santa pairings for this list</li>
@@ -43,105 +41,13 @@
 					</ol>
 				</section>
 			
-				<section class="credits_panel">
+				<section class="credits-panel">
 					<p>Made by <a href="https://interactionmagic.com/">George Cave</a>, on behalf of Santa.</p>
 				</section>
 		</main>
 		
-		<script>
-
-         var link_data;
-
-         document.addEventListener('DOMContentLoaded', function(){
-             // Check inbound link
-            link_data = process_url_data();
-            if(link_data.error){
-               if(link_data.no_string){
-                  show_default();
-                  console.log("No link found");
-               }else{
-                  // handle error
-                  show_error(link_data.msg);
-               }
-            }else{
-               var check_storage = check_for_stored(link_data.data_string);
-               console.log(check_storage);
-               if(!check_storage.error){
-                  show_result(check_storage.your_name, check_storage.for_name, check_storage.number_names);
-               }
-            }
-         });
-        
-
-         // UI handling for this page below
-
-         var _check_form    = document.getElementById("check_form");
-         var _check_name    = document.getElementById("check_name");
-         var _for_name      = document.getElementById("for_name");
-         var _your_name     = document.getElementById("your_name");
-         var _check_panel   = document.getElementById("check_panel");
-         var _default_panel = document.getElementById("default_panel");
-         var _error_panel   = document.getElementById("error_panel");
-         var _result_panel  = document.getElementById("result_panel");
-         var _help_button   = document.getElementById("help_button");
-         var _how_panel     = document.getElementById("how_panel");
-         var _number_names  = document.getElementById("number_names");
-
-         _check_name.addEventListener("focus",function(e){
-            hide_error();
-         });
-
-         _check_form.addEventListener("submit",function(e){
-            e.preventDefault();
-
-            var check_name = _check_name.value.trim();
-            _check_name.value = check_name;
-            if(check_name == ""){
-               show_error("Please fill in your name above");
-               return;
-            }
-
-            var for_name = "";
-            for(i=0; i<link_data.names.length; i++){
-               if(check_name == link_data.names[i]){
-                  for_name = link_data.names[link_data.order[i]-1];
-                  break;
-               }
-            }
-            if(for_name == ""){
-               // error name not found
-               show_error("Sorry, we can't find that name in this list, try again?");
-            }else{
-               save_pairing(link_data.data_string, check_name, for_name, link_data.names.length);
-               show_result(check_name, for_name, link_data.names.length);
-            }
-         });
-
-         _help_button.addEventListener("click", function(e){
-            e.preventDefault();
-            _how_panel.style.display = 'block';
-         });
-
-         function show_default(){
-            _default_panel.style.display = 'block';
-            _check_panel.style.display = 'none';
-         }
-
-         function show_result(your_name, for_name, number_names){
-            _for_name.textContent = for_name;
-            _your_name.textContent = your_name;
-            _number_names.textContent = number_names;
-            _check_form.style.display = 'none';
-            _result_panel.style.display = 'inline-block';
-         }
-             
-         function show_error(err_msg){
-            _error_panel.textContent = err_msg;
-            _error_panel.style.display = 'inline-block';
-         }
-         function hide_error(){
-            _error_panel.style.display = 'none';
-         }
-		</script>
+		<script src="js/SecretSanta.js"></script>
+		<script src="js/common.js"></script>
+		<script src="js/index.js"></script>
 	</body>
 </html>

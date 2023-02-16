@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		// Generate the link
 		const response = Santa.shuffle_and_generate_link()
 		if(response.error){
-			show_error(response.msg)
+			show_error(response.msg, names_input)
 		}else{
 			link_input.value = response.link
 			document.body.classList.add('show-link')

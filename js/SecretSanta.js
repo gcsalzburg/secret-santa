@@ -82,6 +82,7 @@ class SecretSanta{
 			return false
 		}
 
+		// Save all the data internally
 		this.data = {
 			string: data_string,
 			names: names,
@@ -133,7 +134,9 @@ class SecretSanta{
 	}
 	
 	save_name(your_name, receiver){
-		localStorage.setItem(this.data.string, your_name + "|" + receiver + "|" + this.data.names.length)
+		if(this.data){
+			localStorage.setItem(this.data.string, your_name + "|" + receiver + "|" + this.data.names.length)
+		}
 	}
 
 	// //////////////////////////////////////////////////////////////////

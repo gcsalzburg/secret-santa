@@ -14,6 +14,9 @@ What's wrong with most Secret Santa list generators online?
 
 This is a secret santa generator for the modern era, where its more important to keep things secret from the internet, not your friends (See below).
 
+> **Note**
+> New for 2023: The generator now supports exclude lists, to stop couples buying for each other. Add lists of names on the same line, separated by a comma, to exclude them from matching.
+
 ## How it works
 
 + The website generates you a unique link that contains a base64 encoding of all the names + a pairing scheme
